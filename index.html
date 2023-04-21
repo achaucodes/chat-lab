@@ -9,6 +9,14 @@
       My Cool Chat App
     </h1>
 
+    <form>
+      <p>
+        ID: 
+      </p>
+      <input v-model="usernameRequest"/> 
+      <span>{{this.usernameRequestError}}</span>
+      <button type="button" @click="requestUsername(usernameRequest)">request</button>
+    </form>
     <p>
       <button @click="$gf.toggleLogIn">
         <!-- If we have a user ID, we're logged in so show "Log Out" -->
@@ -133,7 +141,7 @@
     <form v-else @submit.prevent="saveName">
       <input v-model="editText"/>
       <input type="submit" value="Save Name"/>
-    </form>
+    </form>  
   </template>
 </body>
 </html>

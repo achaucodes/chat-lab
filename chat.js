@@ -4,6 +4,7 @@ import GraffitiPlugin from 'https://graffiti.garden/graffiti-js/plugins/vue/plug
 import Resolver from './resolver.js'
 
 const app = {
+
   // Import MaVue
   mixins: [mixin],
 
@@ -35,7 +36,9 @@ const app = {
       messageText: '',
       editID: '',
       editText: '',
-      recipient: ''
+      recipient: '',
+      usernameRequest: '',
+      usernameRequestError: ''
     }
   },
 
@@ -118,6 +121,16 @@ const app = {
       message.content = this.editText
       // And clear the edit mark
       this.editID = ''
+    },
+
+    async requestUsername(username) {
+      try {
+        let result = await this.resolver.requestUsername(username);
+        this.usernameRequestError=result;
+      } catch(error) {
+        this.usernameRequestError=error;
+      }
+      
     }
   }
 }
